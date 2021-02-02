@@ -1,16 +1,16 @@
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
-const helmet = require('helmet');
-const express = require('express');
-const app = express();
+var cors = require('cors');
+var path = require('path');
+var fs = require('fs');
+var helmet = require('helmet');
+var express = require('express');
+var app = express();
 
-const port = 9090;
+var port = 9090;
 
-const corsOptions = {
-  origin: `https://localhost:${port}`,
+var corsOptions = {
+  origin: 'https://localhost:' + port,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+};
 
 app.use(cors(corsOptions));
 
@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/zivo.tv'));
 app.get('/*', function (req, res) {
   res.statusCode = 200;
   res.sendFile(__dirname + '/zivo.tv/index.html');
-  res.end;
+  res.end();
 });
 
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+app.listen(port, function() {console.log('Listening on port: '+ port);});
